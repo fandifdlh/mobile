@@ -1,0 +1,51 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services'  // Menambahkan plugin Google services
+}
+
+android {
+    namespace = "com.example.biodata"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.biodata"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+dependencies {
+    // Import Firebase BoM (Bill of Materials)
+    implementation platform('com.google.firebase:firebase-bom:33.10.0')
+
+    // Firebase Analytics
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Perbarui dependensi Play Services jika perlu
+    implementation 'com.google.android.gms:play-services-measurement-api:22.3.0'
+    implementation 'com.google.android.gms:play-services-measurement-impl:22.3.0'
+}
+
+flutter {
+    source = "../.."
+}
